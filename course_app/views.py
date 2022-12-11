@@ -17,7 +17,7 @@ class CourseViewSet(viewsets.ModelViewSet):
 
 class MilestoneViewSet(viewsets.ModelViewSet):
     queryset = Milestone.objects.all()
-    serializer_class = ModuleSerializer
+    serializer_class = MilestoneSerializer
 
 
 class ModuleViewSet(viewsets.ModelViewSet):
