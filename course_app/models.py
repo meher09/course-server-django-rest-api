@@ -20,7 +20,7 @@ class Milestone(models.Model):
         null=True, blank=True,
         related_name='course',
     )
-    
+
     title = models.CharField(verbose_name='Milestone Name', max_length=100)
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.TextField(max_length=500, null=True, blank=True)
@@ -42,7 +42,7 @@ class Module(models.Model):
 
 
 class Video(models.Model):
-    Module = models.ForeignKey(
+    module = models.ForeignKey(
         Module, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(verbose_name='Video Title', max_length=100)
     yotube_link = models.CharField(

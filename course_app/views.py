@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import *
 from .serializers import *
+
+from rest_framework_extensions.mixins import NestedViewSetMixin
 # Create your views here.
 
 
@@ -10,21 +12,21 @@ def home(request):
     return render(request, 'index.html', context)
 
 
-class CourseViewSet(viewsets.ModelViewSet):
+class CourseViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
 
-class MilestoneViewSet(viewsets.ModelViewSet):
+class MilestoneViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Milestone.objects.all()
     serializer_class = MilestoneSerializer
 
 
-class ModuleViewSet(viewsets.ModelViewSet):
+class ModuleViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
 
 
-class VideoViewSet(viewsets.ModelViewSet):
+class VideoViewSet(NestedViewSetMixin, viewsets.ModelViewSet):
     queryset = Video.objects.all()
     serializer_class = VideoSerializer
