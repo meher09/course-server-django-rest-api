@@ -8,6 +8,8 @@ class Course(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=True)
     description = models.TextField(max_length=500, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
+    enrollment = models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.title
