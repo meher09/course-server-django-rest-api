@@ -9,7 +9,6 @@ class Course(models.Model):
     description = models.TextField(max_length=500, null=True, blank=True)
     price = models.IntegerField(null=True, blank=True)
     enrollment = models.BooleanField(default=False)
-    
 
     def __str__(self):
         return self.title
@@ -54,3 +53,13 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class TeamMember(models.Model):
+    name = models.CharField(max_length=250)
+    designation = models.CharField(max_length=150)
+    facebook = models.URLField(max_length=200)
+    image = models.URLField(max_length=250)
+
+    def __str__(self):
+        return self.name

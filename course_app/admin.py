@@ -11,8 +11,8 @@ class CourseAdmin(admin.ModelAdmin):
 #     list_display = ('title', 'slug', 'course')
 
 
-
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Milestone)
 admin.site.register(Module)
 admin.site.register(Video)
+admin.site.register(TeamMember)
