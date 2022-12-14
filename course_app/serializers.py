@@ -1,6 +1,4 @@
 from rest_framework.serializers import ModelSerializer
-from rest_framework_nested.serializers import NestedHyperlinkedModelSerializer
-
 from .models import *
 
 
@@ -26,6 +24,3 @@ class MilestoneSerializers(ModelSerializer):
     class Meta:
         model = Milestone
         fields = '__all__'
-
-
-
