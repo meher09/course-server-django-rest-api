@@ -13,6 +13,7 @@ router.register(
 
 
 urlpatterns = [
+    path('', Home.as_view()),
     path('api/', include(router.urls)),
     path('register/',
          RegistrationViewSet.as_view({'post': 'create'}), name='register'),

@@ -1,11 +1,14 @@
-from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from .serializers import CourseSerializers, MilestoneSerializers, ModuleSerializers, VideoSerializers, CustomRegisterSerializer
 from .models import Course, Milestone, Module, Video
 from rest_framework.response import Response
-from django.contrib.auth import get_user_model
 from rest_framework import status
 from django.db import IntegrityError
+from django.views.generic import TemplateView
+
+
+class Home(TemplateView):
+    template_name = 'index.html'
 
 
 class CourseViewSet(viewsets.ModelViewSet):
