@@ -63,3 +63,12 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class AllowedUser(models.Model):
+    email = models.CharField(max_length=255, unique=True)
+    facebook_id = models.CharField(max_length=255, unique=True)
+    
+    def __str__(self):
+        return self.email

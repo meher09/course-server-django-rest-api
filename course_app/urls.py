@@ -1,39 +1,21 @@
 from django.urls import path, include
 from .views import *
-from rest_framework_nested import routers
-from rest_framework import routers as r
+from rest_framework import routers
 
-router = routers.SimpleRouter()
-router.register(r'courses', CourseViewSet, basename='courses')
+router = routers.DefaultRouter()
+router.register(r'courses', CourseViewSet, 'course')
+router.register(
+    r'courses/(?P<course_slug>[-\w]+)/milestones', MilestoneViewSet, 'milestone')
+router.register(
+    r'courses/(?P<course_slug>[-\w]+)/milestones/(?P<milestone_slug>[-\w]+)/modules', ModuleViewSet, 'module')
+router.register(
+    r'courses/(?P<course_slug>[-\w]+)/milestones/(?P<milestone_slug>[-\w]+)/modules/(?P<module_slug>[-\w]+)/videos', VideoViewSet, 'video')
 
-
-milestone_router = routers.NestedSimpleRouter(
-    router, r'courses', lookup='course')
-
-milestone_router.register(
-    r'milestones', MilestoneViewSet, basename='course-milestone')
-
-
-module_router = routers.NestedSimpleRouter(
-    milestone_router, r'milestones', lookup='module')
-
-module_router.register(r'modules', ModuleViewSet, basename='modules')
-
-
-video_router = routers.NestedSimpleRouter(
-    module_router, r'modules', lookup='video')
-
-video_router.register(r'videos', VideoViewSet, basename='videos')
-
-
-app_name = 'course_app'
 
 urlpatterns = [
-    path('', home, name='home'),
-    path(r'api/', include(router.urls)),
-    path(r'api/', include(milestone_router.urls)),
-    path(r'api/', include(module_router.urls)),
-    path(r'api/', include(video_router.urls)),
+    path('api/', include(router.urls)),
+    path('register/',
+         RegistrationViewSet.as_view({'post': 'create'}), name='register'),
 
 
 ]

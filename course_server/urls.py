@@ -4,9 +4,15 @@ from course_app import views
 
 
 urlpatterns = [
+   
+]
+
+
+urlpatterns = [
     path('admin/clearcache/', include('clearcache.urls')),
     path('admin/', admin.site.urls),
     path('', include('course_app.urls')),
+    
 
 
 ]
